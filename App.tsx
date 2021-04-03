@@ -10,35 +10,36 @@ import {
   View,
 } from 'react-native';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 const App: () => React.ReactNode = () => {
   const isDarkMode = useColorScheme() === 'dark';
-
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: isDarkMode ? '#222' : '#F3F3F3',
+  };
+  const textColor = {
+    color: isDarkMode ? '#FFF' : '#000',
   };
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={[backgroundStyle, styles.root]}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}
-        contentContainerStyle={styles.root}
-      >
-        <View 
-          style={styles.container}
-        >
+        contentContainerStyle={styles.root}>
+        <View style={styles.container}>
           <Image
             style={styles.logo}
             source={require('./assets/img/reactnative.png')}
           />
           <View style={styles.textBox}>
-            <Text style={styles.text}>A boilerplate for developing React Native cross-platform apps that works on iOS, Android and web.</Text>
+            <Text style={[styles.text, textColor]}>
+              A boilerplate for developing cross-platform apps using React
+              Native + Typescript that works on iOS, Android and web.
+            </Text>
           </View>
         </View>
       </ScrollView>
     </SafeAreaView>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
@@ -56,13 +57,13 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   textBox: {
-    width: '90%'
+    width: '90%',
   },
   text: {
     textAlign: 'center',
     fontSize: 18,
     fontWeight: '400',
-  }
+  },
 });
 
 export default App;
